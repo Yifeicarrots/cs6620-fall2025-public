@@ -2,6 +2,7 @@ import os
 import re
 import csv
 from io import StringIO
+from datetime import datetime
 from flask import Flask, render_template, request, jsonify, send_from_directory, send_file
 from flask_cors import CORS
 from pydub import AudioSegment
@@ -405,7 +406,7 @@ def save_label():
             'start_time': round(data['start_time'], 3),
             'end_time': round(data['end_time'], 3),
             'duration': round(data['end_time'] - data['start_time'], 3),
-            'labeled_at': __import__('datetime').datetime.now().isoformat()
+            'labeled_at': datetime.now().isoformat()
         }
         
         # Save to CSV file
@@ -502,8 +503,8 @@ def delete_labels():
     except Exception as e:
         return jsonify({"success": False, "message": f"Error deleting labels file: {str(e)}"})
 
-@app.route('/')
-def hello():
+@app.route('/version')
+def version_info():
     return f'''
     <h1>Hello from Automated CI/CD Pipeline!</h1>
     <p><strong>Version:</strong> 2.0 - Automated Deployment</p>
