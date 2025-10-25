@@ -59,7 +59,7 @@ jobs:
               "docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cs6620-app:latest",
               "docker stop cs6620-container || true",
               "docker rm cs6620-container || true",
-              "docker run -d --name cs6620-container --restart unless-stopped -p 8080:5000 ${{ secrets.DOCKERHUB_USERNAME }}/cs6620-app:latest"
+              "docker run -d --name cs6620-container --restart unless-stopped -p 8080:3000 ${{ secrets.DOCKERHUB_USERNAME }}/cs6620-app:latest"
             ]' \
             --comment "Deploying latest Docker image to EC2"
       
